@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect
+from decouple import config
 
 app = Flask(__name__)
+port = int(config('PORT'))
 
-# Sample todo list
+
 todos = []
 
 @app.route('/')
@@ -22,4 +24,4 @@ def delete_todo(todo_id):
     return redirect('/')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=port)
