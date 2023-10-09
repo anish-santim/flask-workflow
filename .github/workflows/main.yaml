@@ -5,7 +5,7 @@ on: push
 jobs:
   build:
     env:
-      PORT: 8001
+      PORT: 8000
     runs-on: ubuntu-latest
 
     steps:
@@ -25,3 +25,13 @@ jobs:
       - name: Run tests
         run: |
           python -m unittest test.py
+
+      - name: Run tests and generate XML report
+        run: |
+          python -m pytest --junitxml=test-reports/test-results.xml
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports
+          path: test-reports
