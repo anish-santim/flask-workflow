@@ -26,12 +26,4 @@ jobs:
         run: |
           python -m unittest test.py
 
-      - name: Run tests and generate XML report
-        run: |
-          python -m pytest -k test.py --junitxml=test-reports/test-results.xml
-
-      - name: Upload test report
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-reports
-          path: test-reports
+      
